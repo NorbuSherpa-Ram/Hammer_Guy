@@ -8,14 +8,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ladder
+  - Confinder
+  - Player
+  - Hitable
+  - Interactable
   - 
   - 
   - 
@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 457995505
+    locked: 0
+  - name: Playerground
+    uniqueID: 2423528991
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Forground
+    uniqueID: 2513745079
+    locked: 0
+  - name: UI
+    uniqueID: 633390971
     locked: 0
