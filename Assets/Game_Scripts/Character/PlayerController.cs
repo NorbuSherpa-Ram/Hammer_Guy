@@ -113,11 +113,11 @@ namespace Core.Character
                 float inputY = Input.GetAxis("Vertical");
                 playerRb.velocity = new Vector2(playerRb.velocity.x, climbSpeed * inputY);
                 playerAnim.SetBool("Climbing", true);
+                //blend Tree For up and down move direction // Trasnsition to empty//Climb anim  by checking Climbing 
             }
             else
             {
                 playerAnim.SetBool("Climbing", false);
-
             }
         }
 
