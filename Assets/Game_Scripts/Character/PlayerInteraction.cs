@@ -11,8 +11,7 @@ namespace Core.Character
 
         public float interactRange =.5f;
         public LayerMask layerToCheck;
-        [HideInInspector]
-        public Transform teleportTo;
+  
 
         IInteractable interactable ;
 
@@ -29,8 +28,8 @@ namespace Core.Character
             Collider2D col = Physics2D.OverlapCircle(transform.position, interactRange, layerToCheck);
             if (col != null)
             {
-                Transform  destinationn = col.GetComponent<Door>().GetDestinationDoor();
-                teleportTo = destinationn;
+                //Transform  destinationn = col.GetComponent<Door>().GetDestinationDoor();
+             //   teleportTo = destinationn;
                 return col.GetComponent<IInteractable>();
             }
             return null;

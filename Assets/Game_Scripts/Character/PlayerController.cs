@@ -21,7 +21,7 @@ namespace Core.Character
         private CircleCollider2D groundCheckCollider;
 
         private Rigidbody2D playerRb;
-        private Animator playerAnim;
+        public  Animator playerAnim { get; private set; }
         [SerializeField]
         private CircleCollider2D playerCollider;
 
@@ -47,13 +47,13 @@ namespace Core.Character
         private void OnEnable()
         {
             //Trigger By Door once Open Animation finisherd 
-            Door.OnDoorEnter  += EntrerDoor;
-            Door.OnDoorExit  += ExitDoor;
+            Door_Portle.OnDoorEnter  += EntrerDoor;
+            Door_Portle.OnDoorExit  += ExitDoor;
         }
         private void OnDisable()
         {
-            Door.OnDoorEnter  -= EntrerDoor;
-            Door.OnDoorExit -= ExitDoor;
+            Door_Portle.OnDoorEnter  -= EntrerDoor;
+            Door_Portle.OnDoorExit -= ExitDoor;
         }
 
 
@@ -81,13 +81,13 @@ namespace Core.Character
         {
             playerRb.velocity = Vector2.zero;
             playerAnim.SetTrigger("DoorIn");
-            StartCoroutine(Stun(playerAnim.GetCurrentAnimatorClipInfo(0).Length*2+0.2f));
+            isStun = true;
         }
         public void  ExitDoor()
         {
-            TurnSpriteRenderer(true);
+            MakeVisiable();
             playerAnim.SetTrigger("DoorOut");
-           // StartCoroutine(Stun(playerAnim.GetCurrentAnimatorClipInfo(0).Length + 0.2f));
+            StartCoroutine(Stun(1f));
         }
         public void Interact()
         {
@@ -121,10 +121,8 @@ namespace Core.Character
             }
         }
 
-        public void TurnSpriteRenderer( bool _value )
-        {
-            GetComponentInChildren<SpriteRenderer>().enabled = _value;
-        }
+        public void MakeInvisiable( ) => GetComponentInChildren<SpriteRenderer>().enabled = false;
+        public void MakeVisiable( ) => GetComponentInChildren<SpriteRenderer>().enabled = true;
         public void ApplyDamage(float _damage)
         {
             float damage =Mathf.Abs( _damage);
@@ -176,10 +174,5 @@ namespace Core.Character
             }
         }
 
-        public void Teleport()
-        {
-            transform.position = playerInteraction.teleportTo.position;
-            playerInteraction.teleportTo.GetComponent<Door>().ExitDoor();
-        }
     }
 }

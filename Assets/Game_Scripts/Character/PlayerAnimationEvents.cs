@@ -16,13 +16,6 @@ namespace Core.Utility
         {
             playerAttack.DealDamage();
         }
-        public void OnDoorEnter()
-        {
-            playerController.Teleport();
-        }
-        public void OnEnterDoor()
-        {
-            playerController.TurnSpriteRenderer(false);
-        }
+        public void PlayerEnterDoor() => playerController.MakeInvisiable();
     }
 }
